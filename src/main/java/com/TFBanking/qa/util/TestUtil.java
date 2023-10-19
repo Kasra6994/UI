@@ -17,23 +17,25 @@ public class TestUtil extends TestBase {
 	public static long PAGE_LOAD_TIME_OUT = 20;
 	public static long IMPLICIT_WAIT_TIME = 10;
 
-
-	
-	
-	
 	public static String getScreenshot(String testCaseName) throws IOException {
-		
-		TakesScreenshot ts = (TakesScreenshot)driver;
+
+		TakesScreenshot ts = (TakesScreenshot) driver;
 		File source = ts.getScreenshotAs(OutputType.FILE);
-		File file = new File(System.getProperty("user.dir")+"//reports//"+testCaseName + ".png");
+		File file = new File(System.getProperty("user.dir") + "//reports//" + testCaseName + ".png");
 		FileUtils.copyFile(source, file);
 		return System.getProperty("user.dir") + "//reports//" + testCaseName + ".png";
-		
-		
+
 	}
+
+
+		
+		
+		
 	
 	
 	
+	
+
 //	public static ExtentReports getExtentReport() {
 //
 //		String path = System.getProperty("user.dir") + "//reports//index.html";
