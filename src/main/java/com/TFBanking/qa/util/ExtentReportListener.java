@@ -11,6 +11,7 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ExtentReportListener implements ITestListener {
@@ -20,7 +21,8 @@ public class ExtentReportListener implements ITestListener {
 
 	public void onStart(ITestContext context) {
 		suiteName = context.getSuite().getName();
-		String reportPath = "test-output/" + suiteName + "_ExtentReport.html";
+		String timestamp = new SimpleDateFormat("yyyyMMdd").format(new Date());
+		String reportPath = "test-output/" + suiteName + "_ExtentReport_" + timestamp + ".html";
 		ExtentSparkReporter sparkReporter = new ExtentSparkReporter(reportPath);
 		sparkReporter.config().setReportName(suiteName + " Test Automation Report");
 		sparkReporter.config().setDocumentTitle(suiteName + " Test Report");
