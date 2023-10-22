@@ -2,9 +2,10 @@ package com.TFBanking.qa.util;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Calendar;
 
-
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
@@ -35,20 +36,37 @@ public class ExcelReader {
 			e.printStackTrace();
 		}
 	}
-	// returns the row count in a sheet
 
-	public int getRowCount(String sheetName) {
-		int index = workbook.getSheetIndex(sheetName);
-		if (index == -1)
-			return 0;
-		else {
-			sheet = workbook.getSheetAt(index);
-			int number = sheet.getLastRowNum() + 1;
-			return number;
+	//
+	public String[][] getExcelData(String sheetName) {
+		String[][] data = null;
+		try {
+
+			FileInputStream fis = new FileInputStream(path);
+			XSSFWorkbook workbook = new XSSFWorkbook(fis);
+			XSSFSheet sheet = workbook.getSheet(sheetName);
+			XSSFRow row = sheet.getRow(0);
+			int noOfRows = sheet.getPhysicalNumberOfRows();
+			int noOfCols = row.getLastCellNum();
+			Cell cell;
+			data = new String[noOfRows - 1][noOfCols];
+
+			for (int i = 1; i < noOfRows; i++) {
+				for (int j = 0; j < noOfCols; j++) {
+					row = sheet.getRow(i);
+					cell = row.getCell(j);
+					data[i - 1][j] = cell.getStringCellValue();
+				}
+			}
+		} catch (Exception e) {
+			System.out.println("The exception is: " + e.getMessage());
 		}
-
+		return data;
 	}
 
+	
+	
+	
 	// returns the data from a cell
 	public String getCellData(String sheetName, String colName, int rowNum) {
 		try {
@@ -79,7 +97,7 @@ public class ExcelReader {
 			if (cell == null)
 				return "";
 
-			//System.out.println(cell.getCellType().name());
+			// System.out.println(cell.getCellType().name());
 			//
 			if (cell.getCellType().name().equals("STRING"))
 				return cell.getStringCellValue();
@@ -116,6 +134,10 @@ public class ExcelReader {
 			return "row " + rowNum + " or column " + colName + " does not exist in xls";
 		}
 	}
+
+	
+	
+	
 	// returns true if data is set successfully else false
 	public boolean setCellData(String sheetName, String colName, int rowNum, String data) {
 		try {
@@ -310,6 +332,18 @@ public class ExcelReader {
 		return row.getLastCellNum();
 
 	}
+	// returns the row count in a sheet
 
+	public int getRowCount(String sheetName) {
+		int index = workbook.getSheetIndex(sheetName);
+		if (index == -1)
+			return 0;
+		else {
+			sheet = workbook.getSheetAt(index);
+			int number = sheet.getLastRowNum() + 1;
+			return number;
+		}
+
+	}
 
 }

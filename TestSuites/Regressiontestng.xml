@@ -5,10 +5,8 @@
 		<listener class-name="com.TFBanking.qa.util.ExtentReportListener" />
 	</listeners>
 	<test thread-count="5" name="Test">
-		<classes>
-			<class name="com.TFBanking.qa.testCases.LoginTest" />
-			<class name="com.TFBanking.qa.testCases.CalendarTest" />
-			<class name="com.TFBanking.qa.testCases.NewDepositTest" />
-		</classes>
+	<packages>
+		<package name="com.TFBanking.qa.testCases"></package>
+	</packages>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->

@@ -2,36 +2,50 @@ package com.TFBanking.qa.base;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.testng.Assert;
 
-public class Practice {
+import com.TFBanking.qa.util.ExcelReader;
+
+public class Practice  {
 
 	public static void main(String[] args) {
 
-		Scanner ui = new Scanner(System.in);
+			newDepositTestData();
+		
+	
+	}
+	public static Object [][] newDepositTestData(){
+		ExcelReader xl = new ExcelReader("src/main/java/com/TFBanking/qa/testdata/testData.xlsx"); 
+		Object data[][] = xl.getExcelData("NewDepositData");
+		System.out.println(data);
+		return data;
+		
+	}
+	
+	
+	
+		public String calendar5daysAfter(int days) {
+		Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        calendar.add(Calendar.DAY_OF_MONTH, days);
 
-		System.out.println("Give me a string: ");
+        // Extract the day number as an integer
+        int dayNumber = calendar.get(Calendar.DAY_OF_MONTH);
 
-		String palindrome = ui.next();
+        // Convert the day number to a string
+        String dayNumberStr = String.valueOf(dayNumber);
 
-		String reverseWord = "";
-
-		for (int i = palindrome.length() - 1; i >= 0; i--) {
-
-			reverseWord = reverseWord + palindrome.charAt(i);
-
-		}
-
-		if (reverseWord.equalsIgnoreCase(palindrome)) {
-			System.out.println(palindrome + " is  a Palindrome!");
-		} else {
-			System.out.println(palindrome + " is not a Palindrome!");
-		}
+        // Print or use the day number string as needed
+        System.out.println(dayNumberStr);
+        
+        return dayNumberStr;
+	
 	}
 
 	// @Test
@@ -66,12 +80,4 @@ public class Practice {
 
 	List<Integer> myNumbers = Arrays.asList(3, 4, 8, 8, 4, 10, 5, 0, 3, 4, 12);
 
-	public void getData() {
-		
-		Object [][] data = {{
-		
-		
-	}
-
-
-		} 
+}
