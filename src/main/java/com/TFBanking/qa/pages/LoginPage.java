@@ -15,7 +15,10 @@ public class LoginPage extends TestBase {
 	WebElement passwordField;
 	@FindBy(how=How.XPATH, using = "//button[@name='login']")
 	WebElement loginButton;
-
+	@FindBy(how=How.XPATH, using = "//div[@class='alert alert-danger fade in']")
+	WebElement invalidLoginMsg;
+	
+	
 	public LoginPage() {
 		PageFactory.initElements(driver, this);
 
@@ -41,4 +44,11 @@ public class LoginPage extends TestBase {
 		}
 	}
 
+	public boolean invalidLoginisDisplayed() {
+		
+		return invalidLoginMsg.isDisplayed();
+		
+		
+	}
+	
 }

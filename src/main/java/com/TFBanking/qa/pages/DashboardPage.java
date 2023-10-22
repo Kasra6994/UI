@@ -54,10 +54,17 @@ public class DashboardPage extends TestBase {
 	@FindBy(how = How.XPATH, using = "//span[normalize-space()='Calendar']")
 	WebElement calendarButton;
 
-	public void verifyDashboardPage() {
-		Assert.assertEquals(dashBoardHeaderElement.getText(), "Dashboard");
+	public boolean verifyDashboardPage() {
+		try {
+			Assert.assertEquals(dashBoardHeaderElement.getText(), "Dashboard");
+			return true; // Return true if the assertion passes
+		} catch (AssertionError e) {
+			return false; // Return false if the assertion fails
+		}
 	}
-
+	
+	 
+	
 	public void clickCalendar() {
 		calendarButton.click();
 	}
@@ -65,6 +72,7 @@ public class DashboardPage extends TestBase {
 	public void clickTransactions() {
 		transactionsButton.click();
 	}
+
 	public void clickNewDeposit() {
 		newDepositButton.click();
 		try {

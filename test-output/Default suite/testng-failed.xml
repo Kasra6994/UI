@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.TFBanking.qa.testCases.LoginTest">
+      <class name="com.TFBanking.qa.testCases.NewDepositTest">
         <methods>
-          <include name="tearDown"/>
           <include name="setUp"/>
-          <include name="loginTest"/>
+          <include name="makeNewDepositTest" invocation-numbers="0"/>
+          <include name="tearDown"/>
         </methods>
-      </class> <!-- com.TFBanking.qa.testCases.LoginTest -->
+      </class> <!-- com.TFBanking.qa.testCases.NewDepositTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

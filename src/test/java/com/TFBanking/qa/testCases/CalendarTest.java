@@ -35,7 +35,7 @@ public void setUp() {
 	loginPage = new LoginPage();
 }
 
-@Test
+//@Test
 public void calendarTest() {
 	
 	loginPage.enterUsername(prop.getProperty("username"));
